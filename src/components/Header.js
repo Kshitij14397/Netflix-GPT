@@ -12,7 +12,6 @@ const Header = (props) => {
     signOut(auth)
       .then(() => {
         // Sign-out successful.
-        console.log("kp1");
         navigate("/");
       })
       .catch((error) => {
