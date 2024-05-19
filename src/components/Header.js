@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import { onAuthStateChanged } from "firebase/auth";
 import { addUser, removeUser } from "../utils/userSlice";
 import { LOGO } from "../utils/constants";
+import { toggleGptSearchView } from "../utils/gptSlice";
 
 const Header = (props) => {
   const user = useSelector((store) => store.user);
@@ -50,11 +51,23 @@ const Header = (props) => {
         // An error happened.
       });
   };
+
+  const handleGptSearchClick = () => {
+    // Toggle GPT Search
+    dispatch(toggleGptSearchView());
+  };
+
   return (
     <div className="absolute px-8 py-2 bg-gradient-to-b from-black z-10 w-screen flex justify-between">
       <img className="w-44" src={LOGO} alt="logo" />
       {user && (
         <div className="flex p-2">
+          <button
+            className="py-2 px-4 mx-4 my-2 bg-purple-800 text-white rounded-lg"
+            onClick={handleGptSearchClick}
+          >
+            GPT Search
+          </button>
           <img className="w-12 h-12" src={user?.photoURL} alt="usericon" />
           <button onClick={onSignOutHandler} className="font-bold text-white">
             (Sign Out)
