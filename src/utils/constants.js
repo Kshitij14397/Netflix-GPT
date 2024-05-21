@@ -7,8 +7,7 @@ export const API_OPTIONS = {
   method: "GET",
   headers: {
     accept: "application/json",
-    Authorization:
-      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzNTY5ZDg0MTNhNGFjMGM1Nzg1MTM2MjcwMWNhZGU4OSIsInN1YiI6IjY2M2ZjYjdmZmIxYTAxOTAxY2ZlY2UyMiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.D7LZaqdvlzrh2MiiSI8YvfKFQT6QavwyHW_u9zhb78o",
+    Authorization: "Bearer " + process.env.REACT_APP_TMDB_KEY,
   },
 };
 
@@ -16,3 +15,19 @@ export const IMG_CDN_URL = "https://image.tmdb.org/t/p/w500";
 
 export const BG_URL =
   "https://assets.nflxext.com/ffe/siteui/vlv3/ff5587c5-1052-47cf-974b-a97e3b4f0656/065df910-dec3-46ae-afa8-7ad2b52dce40/IN-en-20240506-popsignuptwoweeks-perspective_alpha_website_large.jpg";
+
+export const SUPPORTED_LANGUAGES = [
+  { identifier: "en", name: "English" },
+  { identifier: "hindi", name: "Hindi" },
+  { identifier: "spanish", name: "Spanish" },
+];
+
+export const OPENAI_KEY = process.env.REACT_APP_OPENAI_KEY;
+
+export const movieNames = [
+  "Andaaz Apna Apna",
+  "Hera Pheri",
+  "Chupke Chupke",
+  "Jaane Bhi Do Yaaro",
+  "Padosan",
+];
