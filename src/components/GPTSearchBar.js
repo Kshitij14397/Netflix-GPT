@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import lang from "../utils/languageConstants";
 import { useDispatch, useSelector } from "react-redux";
 import openai from "../utils/openai";
-import { API_OPTIONS, movieNames } from "../utils/constants";
+import { API_OPTIONS } from "../utils/constants";
 import { addGptMovieResult } from "../utils/gptSlice";
 
 const GPTSearchBar = () => {
@@ -25,17 +25,17 @@ const GPTSearchBar = () => {
     console.log(searchText.current.value);
 
     const gptQuery =
-      "Act as a Movie Recommendation System and suggest some movies for the query" +
+      "Act as a Movie Recommendation System and suggest some movies for the genre " +
       searchText.current.value +
-      "Only give me names of 5 movies, comma separated like the example result given ahead. Example Result: Gadar, Sholay, Don, Golmaal, Koi Mil Gya";
+      ". Only give me names of 5 movies, comma separated like the example result given ahead. Example Result: Gadar, Sholay, Don, Golmaal, Koi Mil Gya";
 
-    // TODO: Make an API call to GPT API and get Movie Results
-    // const gptResults = await openai.chat.completions.create({
-    //   messages: [{ role: "user", content: gptQuery }],
-    //   model: "gpt-3.5-turbo",
-    // });
+    // Make an API call to GPT API and get Movie Results
+    const gptResults = await openai.chat.completions.create({
+      messages: [{ role: "user", content: gptQuery }],
+      model: "gpt-4-turbo",
+    });
 
-    // console.log("kp1", gptResults);
+    const movieNames = gptResults?.choices?.[0]?.message?.content?.split(",");
 
     // For each movie I will search TMDB API
     const data = movieNames.map((movie) => searchMovieTMDB(movie));
